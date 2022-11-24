@@ -276,12 +276,12 @@ class TreeCase(unittest.TestCase):
         self.assertEqual(
             self.tree._reader,
             u'''Hárry
-├── Bill
-│   └── George
-└── Jane
-    ├── Diane
-    └── Jill
-        └── Mark
+├── Jane
+│   ├── Diane
+│   └── Jill
+│       └── Mark
+└── Bill
+    └── George
 '''
         )
         self.tree.remove_node("jill")
@@ -291,10 +291,10 @@ class TreeCase(unittest.TestCase):
         self.assertEqual(
             self.tree._reader,
             u'''Hárry
-├── Bill
-│   └── George
-└── Jane
-    └── Diane
+├── Jane
+│   └── Diane
+└── Bill
+    └── George
 '''
         )
 
@@ -503,13 +503,12 @@ class TreeCase(unittest.TestCase):
     def test_print_backend(self):
         expected_result = """\
 Hárry
-├── Bill
-│   └── George
-└── Jane
-    └── Diane
+├── Jane
+│   └── Diane
+└── Bill
+    └── George
 """
-
-        assert str(self.tree) == encode(expected_result)
+        assert str(self.tree) == expected_result
 
     def test_show(self):
         if sys.version_info[0] < 3:
